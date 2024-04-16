@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     basePath: "/GolfTracker",
-    assetPrefix: "GolfTracker",
+    assetPrefix: "/GolfTracker",
     output: "export",
     reactStrictMode: true
 };
