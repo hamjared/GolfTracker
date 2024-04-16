@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    basePath: "./GolfTracker",
+    basePath: "/GolfTracker",
     output: "export",
     reactStrictMode: true
 };
