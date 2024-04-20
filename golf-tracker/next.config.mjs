@@ -3,7 +3,8 @@ const nextConfig = {
     basePath: "/GolfTracker",
     assetPrefix: "/GolfTracker",
     output: "export",
-    reactStrictMode: true
+    reactStrictMode: true,
 };
+
 
 export default nextConfig;

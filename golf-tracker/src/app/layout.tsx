@@ -1,6 +1,10 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { useLocalStorage } from "./useLocalStorage";
+import { Button, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,6 +13,8 @@ export const metadata: Metadata = {
   description: "",
 };
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,7 +22,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Navbar expand="lg" className="bg-body-tertiary">
+          <Container>
+            <Link href="/"><Button>Home</Button></Link>
+          </Container>
+
+        </Navbar>
+        {children}
+      </body>
     </html>
   );
 }

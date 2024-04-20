@@ -1,21 +1,39 @@
 'use client'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Link from 'next/link';
 import { Button, Card, Col, Container, Row, Stack } from "react-bootstrap";
-import { Gear } from 'react-bootstrap-icons'
+import { Gear, Plus, PlusLg, PlusSquareFill } from 'react-bootstrap-icons'
+import { useLocalStorage } from './useLocalStorage';
+import { Course } from './data/Course';
+import { useEffect, useState } from 'react';
+import { getCurDate } from '@/utils/GetCurDate';
+
+export type TestType = {
+  someData: string
+}
 
 export default function Home() {
+
+  const [test, setTest] = useLocalStorage<TestType[]>("TEST", [])
+
+  const [courses, setCourses] = useLocalStorage<Course[]>("COURSES", [])
+
+  function addTest(test: TestType) {
+    setTest(prev => [...prev, test])
+  }
+
   return (
     <Container className='my-4'>
       <Row className='my-4'>
         <Col>Name (HDCP)</Col>
-        <Col className='d-flex justify-content-end'>CurDate</Col>
+        <Col className='d-flex justify-content-end'>{getCurDate()}</Col>
       </Row>
       <Row className='my-1'>
         <Col>Rounds</Col>
         <Col className='d-flex justify-content-end'>
           <Stack gap={2} direction='horizontal'>
-          <Button>New</Button>
-          <Button><Gear></Gear></Button>
+          <Link href="/new-round"><Button><PlusLg/></Button></Link>
+          <Link href="/settings"><Button variant="outline-secondary"><Gear></Gear></Button></Link>
           </Stack>
           
         </Col>
