@@ -28,7 +28,10 @@ export default function RootLayout({
           </Container>
 
         </Navbar>
-        {children}
+        <Container className='my-4'>
+           {children}
+        </Container>
+        
       </body>
     </html>
   );
