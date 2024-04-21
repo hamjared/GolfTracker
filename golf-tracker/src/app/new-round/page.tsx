@@ -4,14 +4,15 @@ import { Button, Card, Col, Container, Row, Stack } from "react-bootstrap";
 import { Gear } from 'react-bootstrap-icons'
 import { TestType } from '../page';
 import { FormEvent } from 'react';
-import { useLocalStorage } from '../useLocalStorage';
+import { useLocalStorage } from 'usehooks-ts';
+
 
 export type NewRoundProps = {
 }
 
 export default function NewRound({} : NewRoundProps) {
 
-  const [test, setTest] = useLocalStorage<TestType[]>("TEST", [])
+  const [test, setTest] = useLocalStorage<TestType[]>("TEST", [], { initializeWithValue: false })
 
 
 

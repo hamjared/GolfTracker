@@ -4,12 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { Button, Card, Col, Container, Form, Modal, Row, Stack } from "react-bootstrap";
 import { Gear, PlusLg } from 'react-bootstrap-icons'
-import { useLocalStorage } from '../useLocalStorage';
 import CourseComponent from '@/components/CourseComponent';
+import { useLocalStorage } from 'usehooks-ts';
 
 
 export default function CourseSettings() {
-    const [courses, setCourses] = useLocalStorage<Course[]>("COURSES", [])
+    const [courses, setCourses] = useLocalStorage<Course[]>("COURSES", [], { initializeWithValue: false })
 
     const [showAddCourseModal, setShowAddCourseModal] = useState(false)
 

@@ -3,24 +3,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from 'next/link';
 import { Button, Card, Col, Container, Row, Stack } from "react-bootstrap";
 import { Gear, Plus, PlusLg, PlusSquareFill } from 'react-bootstrap-icons'
-import { useLocalStorage } from './useLocalStorage';
+
 import { Course } from './data/Course';
 import { useEffect, useState } from 'react';
 import { getCurDate } from '@/utils/GetCurDate';
+import { useLocalStorage } from 'usehooks-ts';
 
 export type TestType = {
   someData: string
 }
 
 export default function Home() {
-
-  const [test, setTest] = useLocalStorage<TestType[]>("TEST", [])
-
-  const [courses, setCourses] = useLocalStorage<Course[]>("COURSES", [])
-
-  function addTest(test: TestType) {
-    setTest(prev => [...prev, test])
-  }
+  const [courses, setCourses] = useLocalStorage<Course[]>("COURSES", [], { initializeWithValue: false })
 
   return (
     <Container className='my-4'>
