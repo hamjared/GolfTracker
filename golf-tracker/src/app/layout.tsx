@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { useLocalStorage } from "./useLocalStorage";
 import { Button, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import Link from "next/link";
 
