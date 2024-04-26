@@ -1,7 +1,9 @@
 export type Course = {
+    id: number,
+    courseUrl: string,
     name: string, 
-    holes: Hole[],
-    tees: Record<string, Tee> // map tee name to Tee data. 
+    holes?: Hole[] | null,
+    tees?: Record<string, Tee> | null // map tee name to Tee data. 
 
 }
 
@@ -15,6 +17,13 @@ export type Tee = {
     name: string,
     rating: number, 
     slope: number
+}
+
+
+export const defaultCourse = {
+    name: "",
+    holes: null,
+    tees: null
 }
 
 
