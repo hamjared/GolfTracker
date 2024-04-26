@@ -1,15 +1,19 @@
 'use client'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ServerSettings from './ServerSettings';
 import CourseSettings from './CourseSettings';
 import UserSettings from './UserSettings';
 import { Container, Tab, Tabs } from 'react-bootstrap';
+import { ServerSettingsType, defaultServerSettings } from '../data/ServerSettings';
+import { useLocalStorage } from 'usehooks-ts';
+import ServerSettings from './ServerSettings';
 
 export type SettingsProps = {
 
 }
 
 export default function Settings() {
+
+
     return (
 
         <>

@@ -1,32 +1,43 @@
 'use client'
 import { Course } from '@/app/data/Course';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button, Card, Col, Container, Form, Modal, Row, Stack } from "react-bootstrap";
 import { Gear, PlusLg } from 'react-bootstrap-icons'
 import CourseComponent from '@/components/CourseComponent';
 import { useLocalStorage } from 'usehooks-ts';
+import { ServerSettingsType, defaultServerSettings } from '../data/ServerSettings';
+import { scrapeCourseFromUrl } from '@/ApiCalls/courseData';
 
 
 export default function CourseSettings() {
     const [courses, setCourses] = useLocalStorage<Course[]>("COURSES", [], { initializeWithValue: false })
 
+    const [serverSettings, setServerSettings] = useLocalStorage<ServerSettingsType>("SERVER_SETTINGS", defaultServerSettings, { initializeWithValue: false })
+
     const [showAddCourseModal, setShowAddCourseModal] = useState(false)
+
+    const courseURLRef = useRef<HTMLInputElement>(null)
 
     const handleCloseCourseModal = () => setShowAddCourseModal(false)
     const handleShowCourseModal = () => setShowAddCourseModal(true)
 
     function handleImportCourse() {
-        console.log("Handle import course")
-        // var course = getCourseData("https://www.greenskeeper.org/colorado/Denver_North_Boulder_Fort_Collins/riverdale_golf_course_dunes/scorecard.cfm")
+        scrapeCourseFromUrl(courseURLRef.current!.value, serverSettings).then(course => {
+
+            // if (courses.some(c => c.id === course.id))
+            setCourses(prev => [course, ...prev])
+        } )
     }
     return (
         <>
             <Modal show={showAddCourseModal} onHide={handleCloseCourseModal}>
                 <Modal.Header closeButton> Add Course from URL</Modal.Header>
                 <Modal.Body>
-                    <Form.Label>Course URL</Form.Label>
-                    <Form.Control type='text'></Form.Control>
+                    <Form.Group controlId="courseURL">
+                        <Form.Label>Course URL</Form.Label>
+                        <Form.Control required ref={courseURLRef}></Form.Control>
+                    </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
                     <Stack direction='horizontal' gap={2}>
@@ -37,7 +48,9 @@ export default function CourseSettings() {
             </Modal>
 
             {courses.map(course => (
+                            <Col key={course.id}>
                             <CourseComponent course={course} />
+                            </Col>
                         ))}
                         <Button onClick={handleShowCourseModal}><PlusLg /></Button>
         </>

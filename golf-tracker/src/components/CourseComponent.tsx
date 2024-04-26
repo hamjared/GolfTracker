@@ -12,7 +12,7 @@ export default function CourseComponent({course} : CourseProps) {
 
   return (
     <>
-    <h1>Course</h1>
+    <h1>{course.name}</h1>
     </>
   );
 }
