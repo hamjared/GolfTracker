@@ -2,10 +2,14 @@ import ServerSettings from "../settings/ServerSettings"
 
 export type ServerSettingsType = {
     ip: string,
-    port: number
+    port: number,
+    isHttps: boolean,
+    usePort: boolean
 }
 
 export const defaultServerSettings = {
-    ip: "127.0.0.1",
-    port: 8080
+    ip: "10.0.0.221",
+    port: 8443,
+    isHttps: true,
+    usePort: false
 }

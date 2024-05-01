@@ -27,7 +27,7 @@ export default function CourseSettings() {
 
             // if (courses.some(c => c.id === course.id))
             setCourses(prev => [course, ...prev])
-        } )
+        })
     }
     return (
         <>
@@ -47,12 +47,16 @@ export default function CourseSettings() {
                 </Modal.Footer>
             </Modal>
 
-            {courses.map(course => (
-                            <Col key={course.id}>
+            <Stack gap={3}>
+                <Row xs={1} sm={2} lg={4} xl={8} className='g-3'>
+                    {courses.map(course => (
+                        <Col key={course.id}>
                             <CourseComponent course={course} />
-                            </Col>
-                        ))}
-                        <Button onClick={handleShowCourseModal}><PlusLg /></Button>
+                        </Col>
+                    ))}
+                </Row>
+                <Button onClick={handleShowCourseModal}><PlusLg /></Button>
+            </Stack>
         </>
     );
 }

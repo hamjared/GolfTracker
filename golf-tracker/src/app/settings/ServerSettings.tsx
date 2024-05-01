@@ -26,7 +26,9 @@ export default function ServerSettings() {
 
         setServerSettings({
             ip: serverIp.current!.value,
-            port: +serverPort.current!.value
+            port: +serverPort.current!.value,
+            isHttps: true,
+            usePort: false
         })
     }
 
@@ -41,7 +43,7 @@ export default function ServerSettings() {
 
             <FormGroup className='mb-3' >
                 <Form.Label>Server IP</Form.Label>
-                <Form.Control type='text' defaultValue={serverSettings.ip} ref={serverIp} pattern='^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$'/>
+                <Form.Control type='text' defaultValue={serverSettings.ip} ref={serverIp} />
             </FormGroup>
 
             <FormGroup className='mb-3'>
