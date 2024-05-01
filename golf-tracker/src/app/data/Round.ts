@@ -1,13 +1,19 @@
 import { Course, Tee } from "./Course"
 
 export type Round = {
-    course: Course,
-    teesPlayed: Tee,
+    id: number,
+    courseName: string,
+    teesPlayed: string,
+    score: number,
+    differential: number,
+    date: Date,
     clubs: Club[],
-    holeData: PlayedHoleData
+    holeData: PlayedHoleData[]
 }
 
 export type PlayedHoleData = {
+    id: number,
+    holeNumber: number, 
     holeScore: number,
     drive: shotLocation,
     approachShot: ApproachShot
